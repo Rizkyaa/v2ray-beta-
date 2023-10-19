@@ -173,12 +173,12 @@ systemctl start rc-local.service
 #sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
  
  # Installing OpenVPN by pulling its repository inside sources.list file 
- #rm -rf /etc/apt/sources.list.d/openvpn*
- #echo "deb http://build.openvpn.net/debian/openvpn/stable $(lsb_release -sc) main" > /etc/apt/sources.list.d/openvpn.list
- #wget -qO - http://build.openvpn.net/debian/openvpn/stable/pubkey.gpg|apt-key add -
- #apt-get update -y
- #apt-get install openvpn -y
-#}
+ rm -rf /etc/apt/sources.list.d/openvpn*
+ echo "deb http://build.openvpn.net/debian/openvpn/stable $(lsb_release -sc) main" > /etc/apt/sources.list.d/openvpn.list
+ wget -qO - http://build.openvpn.net/debian/openvpn/stable/pubkey.gpg|apt-key add -
+ apt-get update -y
+ apt-get install openvpn -y
+}
 
 function InstWebmin(){
  # Download the webmin .deb package
