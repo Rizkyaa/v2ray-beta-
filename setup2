@@ -108,8 +108,8 @@ function InstUpdates(){
  apt-get install ruby -y
  apt-get install apt-transport-https -y
  apt-get install lsb-release -y
- apt-get install squid3 -y
- apt-get install squid -y
+ #apt-get install squid3 -y
+ #apt-get install squid -y
  
  # Installing all required packages to install Webmin
  apt-get install perl -y
@@ -172,32 +172,32 @@ systemctl start rc-local.service
 #sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
  
  # Installing OpenVPN by pulling its repository inside sources.list file 
- rm -rf /etc/apt/sources.list.d/openvpn*
- echo "deb http://build.openvpn.net/debian/openvpn/stable $(lsb_release -sc) main" > /etc/apt/sources.list.d/openvpn.list
- wget -qO - http://build.openvpn.net/debian/openvpn/stable/pubkey.gpg|apt-key add -
- apt-get update -y
- apt-get install openvpn -y
-}
+ #rm -rf /etc/apt/sources.list.d/openvpn*
+ #echo "deb http://build.openvpn.net/debian/openvpn/stable $(lsb_release -sc) main" > /etc/apt/sources.list.d/openvpn.list
+ #wget -qO - http://build.openvpn.net/debian/openvpn/stable/pubkey.gpg|apt-key add -
+ #apt-get update -y
+ #apt-get install openvpn -y
+#}
 
 function InstWebmin(){
  # Download the webmin .deb package
  # You may change its webmin version depends on the link you've loaded in this variable(.deb file only, do not load .zip or .tar.gz file):
- apt-get install apt-transport-https -y
- apt-get install gnupg2 -y
- apt-get install curl -y
- sudo echo "deb https://download.webmin.com/download/repository sarge contrib" \ > /etc/apt/sources.list.d/webmin.list
- curl https://download.webmin.com/jcameron-key.asc | sudo apt-key add -
+ #apt-get install apt-transport-https -y
+ #apt-get install gnupg2 -y
+ #apt-get install curl -y
+ #sudo echo "deb https://download.webmin.com/download/repository sarge contrib" \ > /etc/apt/sources.list.d/webmin.list
+ #curl https://download.webmin.com/jcameron-key.asc | sudo apt-key add -
  
  # Installing .deb package for webmin
- apt-get update -y
- apt-get install webmin -y
+ #apt-get update -y
+ #apt-get install webmin -y
  
  # Configuring webmin server config to use only http instead of https
- sed -i 's|ssl=1|ssl=0|g' /etc/webmin/miniserv.conf
+ #sed -i 's|ssl=1|ssl=0|g' /etc/webmin/miniserv.conf
  
  # Then restart to take effect
- systemctl restart webmin
-}
+ #systemctl restart webmin
+#}
 
 function InstSSH(){
  # Removing some duplicated sshd server configs
@@ -328,12 +328,12 @@ MyStunnelC
 
 function InsOpenVPN(){
  # Checking if openvpn folder is accidentally deleted or purged
- if [[ ! -e /etc/openvpn ]]; then
-  mkdir -p /etc/openvpn
- fi
+ #if [[ ! -e /etc/openvpn ]]; then
+  #mkdir -p /etc/openvpn
+ #fi
 
  # Removing all existing openvpn server files
- rm -rf /etc/openvpn/*
+ #rm -rf /etc/openvpn/*
 
  # Creating server.conf, ca.crt, server.crt and server.key
  cat <<'myOpenVPNconf' > /etc/openvpn/server_tcp.conf
@@ -643,12 +643,12 @@ EOFipt
  echo 1 > /proc/sys/net/ipv4/ip_forward
  
  # Starting OpenVPN server
- systemctl start openvpn@server_tcp
- systemctl enable openvpn@server_tcp
- systemctl start openvpn@server_udp
- systemctl enable openvpn@server_udp
-}
- function InsProxy(){
+ #systemctl start openvpn@server_tcp
+ #systemctl enable openvpn@server_tcp
+ #systemctl start openvpn@server_udp
+ #systemctl enable openvpn@server_udp
+#}
+ #function InsProxy(){
 
  # Removing Duplicate privoxy config
  rm -rf /etc/privoxy/config*
