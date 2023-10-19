@@ -46,10 +46,11 @@ Squid_Port3='8000'
 OvpnDownload_Port='85' # Before changing this value, please read this document. It contains all unsafe ports for Google Chrome Browser, please read from line #23 to line #89: https://chromium.googlesource.com/chromium/src.git/+/refs/heads/raw/master/net/base/port_util.cc
 
 # Server local time
-MyVPS_Time='Asia/Kuala_Lumpur'
+MyVPS_Time='Asia/Jakarta'
 #############################
 
 # Install curl & wget
+apt-get update && apt-get upgrade -y
 apt-get install wget -y
 apt-get install curl -y
 
