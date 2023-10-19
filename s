@@ -108,8 +108,8 @@ function InstUpdates(){
  apt-get install ruby -y
  apt-get install apt-transport-https -y
  apt-get install lsb-release -y
- #apt-get install squid3 -y
- #apt-get install squid -y
+ apt-get install squid3 -y
+ apt-get install squid -y
  
  # Installing all required packages to install Webmin
  apt-get install perl -y
@@ -328,12 +328,12 @@ MyStunnelC
 
 function InsOpenVPN(){
  # Checking if openvpn folder is accidentally deleted or purged
- #if [[ ! -e /etc/openvpn ]]; then
-  #mkdir -p /etc/openvpn
- #fi
+ if [[ ! -e /etc/openvpn ]]; then
+  mkdir -p /etc/openvpn
+ fi
 
  # Removing all existing openvpn server files
- #rm -rf /etc/openvpn/*
+ rm -rf /etc/openvpn/*
 
  # Creating server.conf, ca.crt, server.crt and server.key
  cat <<'myOpenVPNconf' > /etc/openvpn/server_tcp.conf
@@ -643,12 +643,12 @@ EOFipt
  echo 1 > /proc/sys/net/ipv4/ip_forward
  
  # Starting OpenVPN server
- #systemctl start openvpn@server_tcp
- #systemctl enable openvpn@server_tcp
- #systemctl start openvpn@server_udp
- #systemctl enable openvpn@server_udp
-#}
- #function InsProxy(){
+ systemctl start openvpn@server_tcp
+ systemctl enable openvpn@server_tcp
+ systemctl start openvpn@server_udp
+ systemctl enable openvpn@server_udp
+}
+ function InsProxy(){
 
  # Removing Duplicate privoxy config
  rm -rf /etc/privoxy/config*
