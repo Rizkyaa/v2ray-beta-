@@ -26,7 +26,7 @@ Dropbear_Port1='442'
 Dropbear_Port2='110'
 
 # Stunnel Ports
-Stunnel_Port1='443' # through Dropbear
+Stunnel_Port1='5220' # through Dropbear
 Stunnel_Port2='444' # through OpenSSH
 
 # OpenVPN Ports
@@ -46,11 +46,10 @@ Squid_Port3='8000'
 OvpnDownload_Port='85' # Before changing this value, please read this document. It contains all unsafe ports for Google Chrome Browser, please read from line #23 to line #89: https://chromium.googlesource.com/chromium/src.git/+/refs/heads/raw/master/net/base/port_util.cc
 
 # Server local time
-MyVPS_Time='Asia/Jakarta'
+MyVPS_Time='Asia/Kuala_Lumpur'
 #############################
 
 # Install curl & wget
-apt-get update && apt-get upgrade -y
 apt-get install wget -y
 apt-get install curl -y
 
@@ -173,32 +172,32 @@ systemctl start rc-local.service
 #sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
  
  # Installing OpenVPN by pulling its repository inside sources.list file 
- #rm -rf /etc/apt/sources.list.d/openvpn*
- #echo "deb http://build.openvpn.net/debian/openvpn/stable $(lsb_release -sc) main" > /etc/apt/sources.list.d/openvpn.list
- #wget -qO - http://build.openvpn.net/debian/openvpn/stable/pubkey.gpg|apt-key add -
- #apt-get update -y
- #apt-get install openvpn -y
-#}
+ rm -rf /etc/apt/sources.list.d/openvpn*
+ echo "deb http://build.openvpn.net/debian/openvpn/stable $(lsb_release -sc) main" > /etc/apt/sources.list.d/openvpn.list
+ wget -qO - http://build.openvpn.net/debian/openvpn/stable/pubkey.gpg|apt-key add -
+ apt-get update -y
+ apt-get install openvpn -y
+}
 
 function InstWebmin(){
  # Download the webmin .deb package
  # You may change its webmin version depends on the link you've loaded in this variable(.deb file only, do not load .zip or .tar.gz file):
- #apt-get install apt-transport-https -y
- #apt-get install gnupg2 -y
- #apt-get install curl -y
- #sudo echo "deb https://download.webmin.com/download/repository sarge contrib" \ > /etc/apt/sources.list.d/webmin.list
- #curl https://download.webmin.com/jcameron-key.asc | sudo apt-key add -
+ apt-get install apt-transport-https -y
+ apt-get install gnupg2 -y
+ apt-get install curl -y
+ sudo echo "deb https://download.webmin.com/download/repository sarge contrib" \ > /etc/apt/sources.list.d/webmin.list
+ curl https://download.webmin.com/jcameron-key.asc | sudo apt-key add -
  
  # Installing .deb package for webmin
- #apt-get update -y
+ apt-get update -y
  #apt-get install webmin -y
  
  # Configuring webmin server config to use only http instead of https
- #sed -i 's|ssl=1|ssl=0|g' /etc/webmin/miniserv.conf
+ sed -i 's|ssl=1|ssl=0|g' /etc/webmin/miniserv.conf
  
  # Then restart to take effect
  #systemctl restart webmin
-#}
+}
 
 function InstSSH(){
  # Removing some duplicated sshd server configs
